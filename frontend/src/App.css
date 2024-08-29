@@ -1,0 +1,16 @@
+/* App.css */
+.blurred {
+  animation: blurAnimation 0.3s ease-in-out forwards;
+}
+
+@keyframes blurAnimation {
+  0% {
+    filter: blur(0);
+  }
+  50% {
+    filter: blur(5px);
+  }
+  100% {
+    filter: blur(0);
+  }
+}

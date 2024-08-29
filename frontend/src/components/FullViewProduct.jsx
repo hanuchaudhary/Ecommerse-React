@@ -10,7 +10,7 @@ const FullViewProduct = ({ product }) => {
 
   return (
     <div>
-      <div className="md:flex block gap-9 mx-20">
+      <div className="md:flex block gap-9 mx-5 lg:mx-20 my-10">
         <div className="left">
           <img
             className="lg:h-[50vh] h-60 w-80 hover:scale-150 transition-transform duration-500 lg:w-[50vw] object-cover border"

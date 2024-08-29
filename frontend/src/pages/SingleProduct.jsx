@@ -14,7 +14,7 @@ const SingleProduct = () => {
 
   return (
     <div>
-      <div className="mt-20 mx-20 mb-10">
+      <div className="mt-20 mx-5 lg:mx-20 mb-10">
         <Link className="hover:underline" to="/products">
           Shop
         </Link>{" "}
