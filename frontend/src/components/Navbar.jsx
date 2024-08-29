@@ -24,7 +24,7 @@ const Navbar = () => {
 
   return (
     <div
-      className={`grid grid-cols-3 w-full py-4 bg-slate-300 bg-opacity-60 backdrop-blur-sm px-10 capitalize text-md font-normal fixed top-0 left-0 right-0 transition-transform duration-300 ease-in-out ${
+      className={`grid grid-cols-3 w-full py-4 bg-white bg-opacity-60 backdrop-blur-sm px-10 capitalize text-md font-normal fixed top-0 left-0 right-0 transition-transform duration-300 ease-in-out ${
         isVisible ? "transform translate-y-0" : "transform -translate-y-full"
       }`}
       style={{ zIndex: 1000 }}
