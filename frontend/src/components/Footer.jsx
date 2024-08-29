@@ -34,7 +34,7 @@ const Footer = () => {
 
   return (
     <footer className="my-20">
-      <div className="max-w-6xl mx-auto px-4 grid grid-cols-4 gap-8">
+      <div className="max-w-6xl mx-auto px-4 md:grid grid-cols-4 gap-8">
         {footerSections.map((section, index) => (
           <div key={index}>
             <h3 className="font-bold text-md mb-4">{section.title}</h3>

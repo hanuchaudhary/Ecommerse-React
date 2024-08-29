@@ -10,7 +10,7 @@ const Input = ({ label, placeholder, type = "text" }) => {
       </label>
       <input
         type={type}
-        className="bg-zinc-50 border border-zinc-300 text-zinc-900 text-sm rounded-lg focus:ring-zinc-500 focus:border-zinc-500 block w-full p-2.5 "
+        className="bg-zinc-50 border-2 text-zinc-900 text-md rounded-none border-black block w-full p-3 "
         placeholder={placeholder}
         required
       />
