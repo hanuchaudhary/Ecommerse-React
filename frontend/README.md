@@ -138,6 +138,6 @@ For any questions or feedback, feel free to reach out:
 
 - **Name:** Kush Chaudhary
 - **Email:** kushchaudharyog@gmail.com
-- **GitHub:** [hanucahudhary](https://github.com/hanuchaudhary)
+- **GitHub:** [hanuchaudhary](https://github.com/hanuchaudhary)
 
 ---
