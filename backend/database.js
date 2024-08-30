@@ -14,9 +14,9 @@ const productSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    description : {
-        type : String,
-        required : true
+    description: {
+        type: String,
+        required: true
     },
     category: {
         type: String,
@@ -48,8 +48,37 @@ const productSchema = mongoose.Schema({
     }
 })
 
+const userSchema = mongoose.Schema({
+    email: {
+        type: String,
+        required: true,
+        unique: true
+    },
+    firstName: {
+        type: String,
+        required: true
+    },
+    lastName: {
+        type: String,
+        required: true
+    },
+    password: {
+        type: String,
+        required: true
+    },
+    userCartItems: {
+        type: Object
+    },
+    date: {
+        type: Date,
+        default: Date.now
+    }
+})
+
 const product = mongoose.model("product", productSchema);
+const user = mongoose.model("user", userSchema);
 
 module.exports = {
-    product
+    product,
+    user
 }
