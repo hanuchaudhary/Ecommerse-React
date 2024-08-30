@@ -4,7 +4,7 @@ import Admin from "./pages/Admin";
 
 const App = () => {
   return (
-    <div className="h-screen bg-zinc-900">
+    <div className="h-screen bg-zinc-900 relative">
       {/* <Navbar /> */}
       <Admin/>
     </div>

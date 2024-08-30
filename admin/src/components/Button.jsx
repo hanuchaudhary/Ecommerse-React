@@ -1,17 +1,42 @@
 import React from "react";
 import { Link } from "react-router-dom";
-const Button = ({ label, onClick, route }) => {
+import styled from "styled-components";
+
+const Button = ({label,onClick,route}) => {
   return (
-    <Link to={route}>
-      <button
-        onClick={onClick}
-        type="button"
-        className="text-white bg-zinc-800 hover:bg-zinc-900 focus:outline-none focus:ring-4 focus:ring-zinc-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-zinc-700 dark:hover:bg-zinc-700 dark:focus:ring-zinc-600 dark:border-zinc-600"
-      >
-        {label}
-      </button>
-    </Link>
+    <StyledWrapper>
+      <Link to={route}>
+        <button onClick={onClick} id="bottone1">
+          <strong>{label}</strong>
+        </button>
+      </Link>
+    </StyledWrapper>
   );
 };
+
+const StyledWrapper = styled.div`
+  #bottone1 {
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    border-radius: 9px;
+    background: #d5f365;
+    border: none;
+    font-family: inherit;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.4s;
+  }
+
+  #bottone1:hover {
+    box-shadow: 7px 5px 56px -14px #c3d900;
+  }
+
+  #bottone1:active {
+    transform: scale(0.97);
+    box-shadow: 7px 5px 56px -10px #c3d900;
+  }
+`;
 
 export default Button;

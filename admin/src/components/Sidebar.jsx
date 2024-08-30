@@ -3,10 +3,10 @@ import Button from "./Button";
 
 const Sidebar = () => {
   return (
-    <div className="h-full">
-      <div className="flex flex-col gap-4 p-5">
+    <div className="h-full pl-2">
+      <div className="flex flex-col gap-4">
         <Button label={"Add Product"} route={"/addproduct"}/>
-        <Button label={"List Product"} route={"/listproduct"}/>
+        <Button label={"List Products"} route={"/listproduct"}/>
       </div>
     </div>
   );

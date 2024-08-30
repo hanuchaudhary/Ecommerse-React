@@ -1,5 +1,6 @@
 const express = require('express');
 const multer = require('multer');
+const cors = require("cors");
 const path = require('path');
 const { product } = require('./database');
 const { productValidation } = require('./zod');
@@ -8,7 +9,7 @@ const PORT = process.env.PORT || 5000;
 
 const app = express();
 app.use(express.json())
-
+app.use(cors());
 const storage = multer.diskStorage({
     destination: './uploads/',
     filename: function (req, file, cb) {
@@ -80,6 +81,7 @@ app.post('/addproduct', async (req, res) => {
             id: pId,
             name: body.name,
             category: body.category,
+            description: body.description,
             image: body.image,
             color: body.color,
             size: body.size,
