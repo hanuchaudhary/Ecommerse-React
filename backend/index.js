@@ -142,59 +142,74 @@ app.get("/products", async (req, res) => {
 app.post("/signup", async (req, res) => {
     const body = req.body;
     const parsedUser = userValidation.safeParse(body);
+
     try {
         if (!parsedUser.success) {
-            res.status(400).json({
+            return res.status(400).json({
+                success: false,
                 msg: "Error: Invalid input, Zod validation failed!",
                 errors: parsedUser.error.errors,
             });
-            return;
         }
 
         let checkExistUser = await user.findOne({ email: body.email });
         if (checkExistUser) {
-            res.status(400).json({
+            return res.status(400).json({
+                success: false,
                 message: "User Already Exists!!!",
             });
-            return;
-        } else {
-            let cart = {};
-            for (let i = 0; i < 300; i++) {
-                cart[i] = 0;
-            }
-
-            let addUser = new user({
-                id: body.id,
-                email: body.email,
-                firstName: body.firstName,
-                lastName: body.lastName,
-                password: body.password,
-                userCartItems: cart,
-            });
-            await addUser.save();
-
-            // JWT
-
-            const data = {
-                addUser: {
-                    id: addUser._id,
-                },
-            };
-
-            const token = jwt.sign(data, JWT_SECRET, { expiresIn: '1h' });
-            res.status(200).json({
-                message: "User added successfully!!",
-                token: token,
-                user: addUser,
-            });
         }
+
+        let cart = {};
+        for (let i = 0; i < 300; i++) {
+            cart[i] = 0;
+        }
+
+        const bcrypt = require('bcrypt');
+        const saltRounds = 10;
+        let hashedPassword = await bcrypt.hash(body.password, saltRounds);
+
+        let addUser = new user({
+            id: body.id,
+            email: body.email,
+            firstName: body.firstName,
+            lastName: body.lastName,
+            password: hashedPassword,
+            userCartItems: cart,
+        });
+
+        await addUser.save();
+
+        const data = {
+            user: {
+                id: addUser._id,
+                email: addUser.email,
+            },
+        };
+
+        const token = jwt.sign(data, JWT_SECRET, { expiresIn: '1h' });
+
+        res.status(200).json({
+            success: true,
+            message: "User added successfully!!",
+            token: token,
+            user: {
+                id: addUser._id,
+                email: addUser.email,
+                firstName: addUser.firstName,
+                lastName: addUser.lastName,
+                userCartItems: addUser.userCartItems,
+            },
+        });
     } catch (error) {
-        res.status(411).json({
-            msg: "Failed to add product!!",
+        res.status(500).json({
+            success: false,
+            msg: "Failed to add user!!",
             error: error.message,
         });
     }
 });
+
 
 app.post("/signin", async (req, res) => {
     const body = req.body;
@@ -223,9 +238,9 @@ app.post("/signin", async (req, res) => {
                     success: true,
                     token: token,
                 });
-            }else{
+            } else {
                 res.status(400).json({
-                    msg : "Wrong PAssword!!"
+                    msg: "Wrong PAssword!!"
                 })
             }
         } else {
